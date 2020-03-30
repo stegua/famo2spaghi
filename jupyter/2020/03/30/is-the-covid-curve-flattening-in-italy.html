@@ -146,7 +146,7 @@ window.onload = wrap_img;
     <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#About">About </a>
 <ul>
-<li class="toc-entry toc-h3"><a href="#Runnig-this-notebook-on-Colab">Runnig this notebook on Colab </a></li>
+<li class="toc-entry toc-h3"><a href="#Running-this-notebook-on-Colab">Running this notebook on Colab </a></li>
 </ul>
 </li>
 <li class="toc-entry toc-h1"><a href="#The-SIR-model:-The-Elegance-of-Simplicity">The SIR model: The Elegance of Simplicity </a>
@@ -155,7 +155,13 @@ window.onload = wrap_img;
 <li class="toc-entry toc-h2"><a href="#Discrete-Time-Model">Discrete Time Model </a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#Data-Fitting-via-Constrained-Optimization">Data Fitting via Constrained Optimization </a></li>
+<li class="toc-entry toc-h1"><a href="#Data-Fitting-via-Nonlinear-Constrained-Optimization">Data Fitting via Nonlinear Constrained Optimization </a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#Input-Data">Input Data </a></li>
+<li class="toc-entry toc-h2"><a href="#Variables,-Objective-Function,-and-Constraints">Variables, Objective Function, and Constraints </a></li>
+<li class="toc-entry toc-h2"><a href="#Solving-the-Model">Solving the Model </a></li>
+</ul>
+</li>
 <li class="toc-entry toc-h1"><a href="#Is-the-Curve-Flattening?">Is the Curve Flattening? </a>
 <ul>
 <li class="toc-entry toc-h3"><a href="#License">License </a></li>
@@ -197,10 +203,10 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Runnig-this-notebook-on-Colab">
-<a class="anchor" href="#Runnig-this-notebook-on-Colab" aria-hidden="true"><span class="octicon octicon-link"></span></a>Runnig this notebook on Colab<a class="anchor-link" href="#Runnig-this-notebook-on-Colab"> </a>
+<h3 id="Running-this-notebook-on-Colab">
+<a class="anchor" href="#Running-this-notebook-on-Colab" aria-hidden="true"><span class="octicon octicon-link"></span></a>Running this notebook on Colab<a class="anchor-link" href="#Running-this-notebook-on-Colab"> </a>
 </h3>
-<p>Run the following snippet if you arre running this notebook in <a href="https://colab.research.google.com/">Colab</a>.</p>
+<p>Run the following snippet if you are running this notebook in <a href="https://colab.research.google.com/">Colab</a>.</p>
 
 </div>
 </div>
@@ -248,7 +254,7 @@ window.onload = wrap_img;
 <h1 id="The-SIR-model:-The-Elegance-of-Simplicity">
 <a class="anchor" href="#The-SIR-model:-The-Elegance-of-Simplicity" aria-hidden="true"><span class="octicon octicon-link"></span></a>The SIR model: The Elegance of Simplicity<a class="anchor-link" href="#The-SIR-model:-The-Elegance-of-Simplicity"> </a>
 </h1>
-<p>The <strong>Susceptible-Infectious-Recovered (SIR)</strong> model is a classical epidemic model that is used to describe rapid outbreaks that occur in less than a year. For a complete survey on the SIR and related models, we recommend reading the SIAM Review by Herbert W. Hethcote entitled <a href="https://epubs.siam.org/doi/pdf/10.1137/S0036144500371907">The Mathematics of Infectious
+<p>The <strong>Susceptible-Infectious-Recovered (SIR)</strong> model is a classical epidemic model that is used to describe rapid outbreaks that occur in less than a year. For a complete survey on the SIR and related models, we recommend reading the <strong>SIAM Review</strong> by Herbert W. Hethcote entitled <a href="https://epubs.siam.org/doi/pdf/10.1137/S0036144500371907">The Mathematics of Infectious
 Diseases</a>. The next paragraphs are based on that very nice paper.</p>
 <p>In this post, we will not enter into details of all those models, but we will focus on the basic equations that can be used to capture the main trend of the Covid19 outbreak in Italy at the time of writing.</p>
 
@@ -261,7 +267,7 @@ Diseases</a>. The next paragraphs are based on that very nice paper.</p>
 <h2 id="Continuous-Time-Model">
 <a class="anchor" href="#Continuous-Time-Model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Continuous Time Model<a class="anchor-link" href="#Continuous-Time-Model"> </a>
 </h2>
-<p>The <strong>SIR model</strong> consider a population of $N$ individuals partiotioned into three groups: (i), Susceptible, (ii) Infectious, and (iii) Recovered. The number of individuals at time $t$ is each group is denoted by $S(t)$, $I(t)$, and $R(t)$, respectively. Since the model do not consider births and deaths, we have at any time of outbreak:
+<p>The <strong>SIR model</strong> consider a population of $N$ individuals partitioned into three groups: (i), Susceptible, (ii) Infectious, and (iii) Recovered. The number of individuals at time $t$ is each group is denoted by $S(t)$, $I(t)$, and $R(t)$, respectively. Since the model do not consider births and deaths, we have at any time of outbreak:
 $$
     N = S(t) + I(t) + R(t).
 $$</p>
@@ -297,12 +303,12 @@ which is defined in [1] as the average number of secondary infections produced w
 </h2>
 <p>The previous model can be discretized thus obtaining the following <strong>discrete time model</strong>:</p>
 $$
-S(t+1) = S(t) - \frac{\beta}{N} I(t) S(t), 
+S(t+1) = S(t) - \frac{\beta}{N} I(t) S(t), \;\;\;\;\;\;\;\;\;\;
 $$$$
 I(t+1) = I(t) + \frac{\beta}{N} S(t) I(t) - \gamma I(t), 
 $$$$
-R(t+1) = R(t) + \gamma I(t)
-$$<p>Intuitively, we have that proportion of individuals moving at unit of time $t+1$ from the suscetible group $S$ to the infected groups $I$ is equal to $\frac{\beta}{N} I(t) S(t)$. The proportion of individuals moving at unit of time $t+1$ from the infected group $I$ to the recovered groups $R$ is equal to $\gamma I(t)$.</p>
+R(t+1) = R(t) + \gamma I(t) \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;
+$$<p>Intuitively, we have that proportion of individuals moving at unit of time $t+1$ from the susceptible group $S$ to the infected groups $I$ is equal to $\frac{\beta}{N} I(t) S(t)$. The proportion of individuals moving at unit of time $t+1$ from the infected group $I$ to the recovered groups $R$ is equal to $\gamma I(t)$.</p>
 
 </div>
 </div>
@@ -312,11 +318,18 @@ $$<p>Intuitively, we have that proportion of individuals moving at unit of time 
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The dynamic of the system is completely described by the two parameters $\beta$ and $\gamma$, and the initial conditions $S(0)$, $I(0)$, and $R(0)$.
 </p>
-<div class="flash flash-warn">
-    <svg class="octicon octicon-zap octicon octicon-zap" viewbox="0 0 10 16" version="1.1" width="10" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M10 7H6l3-7-9 9h4l-3 7 9-9z"></path></svg>
-    <strong>Important: </strong>The goal of this post is to present a data fitting approach to estimate the two parameters $\gamma$ and $\beta$, given the data of an outbreak which is not yet concluded. That is, we have reasonable good estimate of $I(t)$ and $R(t)$ for all $t \leq \bar t$, but we have to estimate those values for $t \geq \bar t$.
+<div class="flash">
+    <svg class="octicon octicon-info" viewbox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
+    <strong>Note: </strong>The goal of this post is to present a data fitting approach to estimate the two parameters $\gamma$ and $\beta$, given the data of an outbreak which is not yet concluded. That is, we have reasonable good estimate of $I(t)$ and $R(t)$ for all $t \leq \bar t$, but we have to estimate those values for $t \geq \bar t$.
 </div>
-As a side effect, we can get the value of the important parameter $R_0$.
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As a side effect, we can get the value of the important parameter $R_0$.</p>
 <p>And all this happen by solving a Nonlinear Constrained Optimization problem using Python in a Colab.</p>
 
 </div>
@@ -325,13 +338,40 @@ As a side effect, we can get the value of the important parameter $R_0$.
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Data-Fitting-via-Constrained-Optimization">
-<a class="anchor" href="#Data-Fitting-via-Constrained-Optimization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Fitting via Constrained Optimization<a class="anchor-link" href="#Data-Fitting-via-Constrained-Optimization"> </a>
+<h1 id="Data-Fitting-via-Nonlinear-Constrained-Optimization">
+<a class="anchor" href="#Data-Fitting-via-Nonlinear-Constrained-Optimization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Fitting via Nonlinear Constrained Optimization<a class="anchor-link" href="#Data-Fitting-via-Nonlinear-Constrained-Optimization"> </a>
 </h1>
 <p>The Italian government is updating every day on GitHub a detailed report of the situation of the <a href="https://github.com/pcm-dpc/COVID-19">COVID19 outbreak in Italy</a>: this is a very important source of data for every scientist.</p>
 <p>In particular, since February, 24th, 2020, we have the number of official cases (infected persons) the number of recovered, and the number of deaths. We are interested specifically on the number of new infected by day, which is only implicitly contained in the database.</p>
 <p>Another important source of data is the <a href="https://www.kaggle.com/c/covid19-global-forecasting-week-2">Kaggle Covid Dataset</a>, which contains the data for all the world. From Kaggle, we used the dataset for the Hubei region in China, where the outbreak is at the moment under control, and people is getting back to work.</p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Input-Data">
+<a class="anchor" href="#Input-Data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Input Data<a class="anchor-link" href="#Input-Data"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Variables,-Objective-Function,-and-Constraints">
+<a class="anchor" href="#Variables,-Objective-Function,-and-Constraints" aria-hidden="true"><span class="octicon octicon-link"></span></a>Variables, Objective Function, and Constraints<a class="anchor-link" href="#Variables,-Objective-Function,-and-Constraints"> </a>
+</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Solving-the-Model">
+<a class="anchor" href="#Solving-the-Model" aria-hidden="true"><span class="octicon octicon-link"></span></a>Solving the Model<a class="anchor-link" href="#Solving-the-Model"> </a>
+</h2>
 </div>
 </div>
 </div>
