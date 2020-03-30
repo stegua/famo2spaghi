@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="Is the Covid Curve Flattening in Italy?" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Data fitting via Constrained Optimization." />
-<meta property="og:description" content="Data fitting via Constrained Optimization." />
+<meta name="description" content="Data fitting via Nonlinear Constrained Optimization." />
+<meta property="og:description" content="Data fitting via Nonlinear Constrained Optimization." />
 <link rel="canonical" href="https://stegua.github.io/famo2spaghi/jupyter/2020/03/30/is-the-covid-curve-flattening-in-italy.html" />
 <meta property="og:url" content="https://stegua.github.io/famo2spaghi/jupyter/2020/03/30/is-the-covid-curve-flattening-in-italy.html" />
 <meta property="og:site_name" content="Spaghetti Optimization 2.0" />
@@ -16,15 +16,15 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-03-30T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Data fitting via Constrained Optimization.","@type":"BlogPosting","headline":"Is the Covid Curve Flattening in Italy?","dateModified":"2020-03-30T00:00:00-05:00","datePublished":"2020-03-30T00:00:00-05:00","image":"https://stegua.github.io/famo2spaghi/images/chart-preview.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://stegua.github.io/famo2spaghi/jupyter/2020/03/30/is-the-covid-curve-flattening-in-italy.html"},"url":"https://stegua.github.io/famo2spaghi/jupyter/2020/03/30/is-the-covid-curve-flattening-in-italy.html","@context":"https://schema.org"}</script>
+{"description":"Data fitting via Nonlinear Constrained Optimization.","@type":"BlogPosting","headline":"Is the Covid Curve Flattening in Italy?","dateModified":"2020-03-30T00:00:00-05:00","datePublished":"2020-03-30T00:00:00-05:00","image":"https://stegua.github.io/famo2spaghi/images/chart-preview.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://stegua.github.io/famo2spaghi/jupyter/2020/03/30/is-the-covid-curve-flattening-in-italy.html"},"url":"https://stegua.github.io/famo2spaghi/jupyter/2020/03/30/is-the-covid-curve-flattening-in-italy.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/famo2spaghi/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://stegua.github.io/famo2spaghi/feed.xml" title="Spaghetti Optimization 2.0" /><link rel="shortcut icon" type="image/x-icon" href="/famo2spaghi/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>Is the Covid Curve Flattening in Italy? | Spaghetti Optimization 2.0</title>
 <meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="Is the Covid Curve Flattening in Italy?" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Data fitting via Constrained Optimization." />
-<meta property="og:description" content="Data fitting via Constrained Optimization." />
+<meta name="description" content="Data fitting via Nonlinear Constrained Optimization." />
+<meta property="og:description" content="Data fitting via Nonlinear Constrained Optimization." />
 <link rel="canonical" href="https://stegua.github.io/famo2spaghi/jupyter/2020/03/30/is-the-covid-curve-flattening-in-italy.html" />
 <meta property="og:url" content="https://stegua.github.io/famo2spaghi/jupyter/2020/03/30/is-the-covid-curve-flattening-in-italy.html" />
 <meta property="og:site_name" content="Spaghetti Optimization 2.0" />
@@ -32,7 +32,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-03-30T00:00:00-05:00" />
 <script type="application/ld+json">
-{"description":"Data fitting via Constrained Optimization.","@type":"BlogPosting","headline":"Is the Covid Curve Flattening in Italy?","dateModified":"2020-03-30T00:00:00-05:00","datePublished":"2020-03-30T00:00:00-05:00","image":"https://stegua.github.io/famo2spaghi/images/chart-preview.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://stegua.github.io/famo2spaghi/jupyter/2020/03/30/is-the-covid-curve-flattening-in-italy.html"},"url":"https://stegua.github.io/famo2spaghi/jupyter/2020/03/30/is-the-covid-curve-flattening-in-italy.html","@context":"https://schema.org"}</script>
+{"description":"Data fitting via Nonlinear Constrained Optimization.","@type":"BlogPosting","headline":"Is the Covid Curve Flattening in Italy?","dateModified":"2020-03-30T00:00:00-05:00","datePublished":"2020-03-30T00:00:00-05:00","image":"https://stegua.github.io/famo2spaghi/images/chart-preview.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://stegua.github.io/famo2spaghi/jupyter/2020/03/30/is-the-covid-curve-flattening-in-italy.html"},"url":"https://stegua.github.io/famo2spaghi/jupyter/2020/03/30/is-the-covid-curve-flattening-in-italy.html","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
@@ -104,7 +104,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Is the Covid Curve Flattening in Italy?</h1><p class="page-description">Data fitting via Constrained Optimization.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-03-30T00:00:00-05:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Is the Covid Curve Flattening in Italy?</h1><p class="page-description">Data fitting via Nonlinear Constrained Optimization.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-03-30T00:00:00-05:00" itemprop="datePublished">
         Mar 30, 2020
       </time>
        • <span class="read-time" title="Estimated read time">
@@ -330,7 +330,7 @@ As a side effect, we can get the value of the important parameter $R_0$.
 </h1>
 <p>The Italian government is updating every day on GitHub a detailed report of the situation of the <a href="https://github.com/pcm-dpc/COVID-19">COVID19 outbreak in Italy</a>: this is a very important source of data for every scientist.</p>
 <p>In particular, since February, 24th, 2020, we have the number of official cases (infected persons) the number of recovered, and the number of deaths. We are interested specifically on the number of new infected by day, which is only implicitly contained in the database.</p>
-<p>Another important source of data is the <a href="https://www.kaggle.com/c/covid19-global-forecasting-week-2">Kaggle Covid Dataset</a>, which contains t</p>
+<p>Another important source of data is the <a href="https://www.kaggle.com/c/covid19-global-forecasting-week-2">Kaggle Covid Dataset</a>, which contains the data for all the world. From Kaggle, we used the dataset for the Hubei region in China, where the outbreak is at the moment under control, and people is getting back to work.</p>
 
 </div>
 </div>
