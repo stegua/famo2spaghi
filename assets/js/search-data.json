@@ -2,7 +2,7 @@
   
     
         "post0": {
-            "title": "Is the covid19 Curve Flattening in Italy?",
+            "title": "Is the covid Curve Flattening in Italy?",
             "content": "About . This notebook explains how to fit the Italian open-data about the spread of #covid19 using a Susceptible-Infectious-Recovered (SIR) model. . Data fitting is modeled and solved using Constrained Optimization via Pyomo and IPOPT. . Important: I am neither a medical doctor nor an epidemiologist. This post is only about a didactic example of fitting open-data via Mathematical Optimization. . Runnig this notebook on Colab . Run the following snippet if you arre running this notebook in Colab. . #collapse-hide import shutil import sys import os.path if not shutil.which(&quot;pyomo&quot;): !pip install -q pyomo assert(shutil.which(&quot;pyomo&quot;)) if not (shutil.which(&quot;ipopt&quot;) or os.path.isfile(&quot;ipopt&quot;)): if &quot;google.colab&quot; in sys.modules: !apt-get install -y -qq glpk-utils else: try: !conda install -c conda-forge ipopt except: pass . . The SIR model: The Elegance of Simplicity . The SIR model ... . Data Fitting via Constrained Optimization . Is the Curve Flattening? . Charts made with Altair remain interactive. Example charts taken from this repo, specifically this notebook. . License . This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. .",
             "url": "https://stegua.github.io/famo2spaghi/jupyter/2020/03/30/is-the-covid-curve-flattening-in-italy.html",
             "relUrl": "/jupyter/2020/03/30/is-the-covid-curve-flattening-in-italy.html",
