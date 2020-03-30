@@ -14,7 +14,7 @@ You can find my personal offical web pages at the following links:
 * [My Publications](https://scholar.google.it/citations?user=6Ogg5A0AAAAJ)
 
 ### Credits
-This blog started in 2010 after several discussions with my friend and coauthor [Stefano Coniglio](https://www.southampton.ac.uk/maths/about/staff/sc2r15.page),who always proofreads my posts. Though I have not convinced him to write any guest post yet, he is a contributor of this blog: **thanks Stefano**!
+This blog started in 2012 after several discussions with my friend and coauthor [Stefano Coniglio](https://www.southampton.ac.uk/maths/about/staff/sc2r15.page), who always proofreads my posts. Though I have not convinced him to write any guest post yet, he is a contributor of this blog: **thanks Stefano**!
 
 Another friend and coauthor that supports this blog is [Marco Chiarandini](https://imada.sdu.dk/~marco/). I do not know when he finds the time to proofread my posts, but he does, with the same seriousness as if he were reviewing a paper: **thanks Marco**!
 
