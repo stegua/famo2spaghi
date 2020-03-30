@@ -146,9 +146,14 @@ window.onload = wrap_img;
     <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#About">About </a>
 <ul>
+<li class="toc-entry toc-h3"><a href="#Runnig-this-notebook-on-Colab">Runnig this notebook on Colab </a></li>
 <li class="toc-entry toc-h2"><a href="#The-SIR-model:-The-Elegance-of-Simplicity">The SIR model: The Elegance of Simplicity </a></li>
-<li class="toc-entry toc-h2"><a href="#Constrained-Optimization:-Yes,-SIR!">Constrained Optimization: Yes, SIR! </a></li>
-<li class="toc-entry toc-h2"><a href="#Is-the-Curve-Flattening?">Is the Curve Flattening? </a></li>
+<li class="toc-entry toc-h2"><a href="#Data-Fitting-via-Constrained-Optimization">Data Fitting via Constrained Optimization </a></li>
+<li class="toc-entry toc-h2"><a href="#Is-the-Curve-Flattening?">Is the Curve Flattening? </a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#License">License </a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul><!--
@@ -173,7 +178,7 @@ window.onload = wrap_img;
 <h1 id="About">
 <a class="anchor" href="#About" aria-hidden="true"><span class="octicon octicon-link"></span></a>About<a class="anchor-link" href="#About"> </a>
 </h1>
-<p>This notebook explain how to fit the <a href="https://github.com/pcm-dpc/COVID-19">Italian open-data</a> about the spread of #covid19 using a <a href="https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology">Susceptible-Infectious-Recovered (SIR) model</a>.</p>
+<p>This notebook explains how to fit the <a href="https://github.com/pcm-dpc/COVID-19">Italian open-data</a> about the spread of #covid19 using a <a href="https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology">Susceptible-Infectious-Recovered (SIR) model</a>.</p>
 <p><strong>Data fitting</strong> is modeled and solved using Constrained Optimization via <a href="http://www.pyomo.org/">Pyomo</a> and <a href="https://github.com/coin-or/Ipopt">IPOPT</a>.
 </p>
 <div class="flash flash-warn">
@@ -184,6 +189,49 @@ window.onload = wrap_img;
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Runnig-this-notebook-on-Colab">
+<a class="anchor" href="#Runnig-this-notebook-on-Colab" aria-hidden="true"><span class="octicon octicon-link"></span></a>Runnig this notebook on Colab<a class="anchor-link" href="#Runnig-this-notebook-on-Colab"> </a>
+</h3>
+<p>Run the following snippet if you arre running this notebook in <a href="https://colab.research.google.com/">Colab</a>:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">shutil</span><span class="o">.</span><span class="n">which</span><span class="p">(</span><span class="s2">"pyomo"</span><span class="p">):</span>
+    <span class="o">!</span>pip install -q pyomo
+    <span class="k">assert</span><span class="p">(</span><span class="n">shutil</span><span class="o">.</span><span class="n">which</span><span class="p">(</span><span class="s2">"pyomo"</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">shutil</span><span class="o">.</span><span class="n">which</span><span class="p">(</span><span class="s2">"ipopt"</span><span class="p">)</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="s2">"ipopt"</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="s2">"google.colab"</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">:</span>
+        <span class="o">!</span>apt-get install -y -qq glpk-utils
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="o">!</span>conda install -c conda-forge coinor-ipopt 
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">pass</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -198,8 +246,8 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Constrained-Optimization:-Yes,-SIR!">
-<a class="anchor" href="#Constrained-Optimization:-Yes,-SIR!" aria-hidden="true"><span class="octicon octicon-link"></span></a>Constrained Optimization: Yes, SIR!<a class="anchor-link" href="#Constrained-Optimization:-Yes,-SIR!"> </a>
+<h2 id="Data-Fitting-via-Constrained-Optimization">
+<a class="anchor" href="#Data-Fitting-via-Constrained-Optimization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data Fitting via Constrained Optimization<a class="anchor-link" href="#Data-Fitting-via-Constrained-Optimization"> </a>
 </h2>
 </div>
 </div>
@@ -211,6 +259,17 @@ window.onload = wrap_img;
 <a class="anchor" href="#Is-the-Curve-Flattening?" aria-hidden="true"><span class="octicon octicon-link"></span></a>Is the Curve Flattening?<a class="anchor-link" href="#Is-the-Curve-Flattening?"> </a>
 </h2>
 <p>Charts made with Altair remain interactive.  Example charts taken from <a href="https://github.com/uwdata/visualization-curriculum">this repo</a>, specifically <a href="https://github.com/uwdata/visualization-curriculum/blob/master/altair_interaction.ipynb">this notebook</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="License">
+<a class="anchor" href="#License" aria-hidden="true"><span class="octicon octicon-link"></span></a>License<a class="anchor-link" href="#License"> </a>
+</h3>
+<p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a><br>&lt;span xmlns:dct="<a href="http://purl.org/dc/terms/">http://purl.org/dc/terms/</a>" property="dct:title"&gt;<b>Is the Curve Flattening in Italy?</b>&lt;/span&gt; by &lt;a xmlns:cc="<a href="http://creativecommons.org/ns#">http://creativecommons.org/ns#</a>" href="<a href="http://mate.unipv.it/gualandi">http://mate.unipv.it/gualandi</a>" property="cc:attributionName" rel="cc:attributionURL"&gt;Stefano Gualandi&lt;/a&gt; is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. Based on a work at &lt;a xmlns:dct="<a href="http://purl.org/dc/terms/">http://purl.org/dc/terms/</a>" href="<a href="https://github.com/stegua/famo2spaghi">https://github.com/stegua/famo2spaghi</a>" rel="dct:source"&gt;<a href="https://github.com/stegua/famo2spaghi">https://github.com/stegua/famo2spaghi</a>&lt;/a&gt;.</p>
 
 </div>
 </div>
