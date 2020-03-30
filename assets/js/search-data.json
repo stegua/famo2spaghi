@@ -1,11 +1,22 @@
 {
   
+    
+        "post0": {
+            "title": "Is the",
+            "content": "About . This notebook explains how to fit the Italian open-data about the spread of #covid19 using a Susceptible-Infectious-Recovered (SIR) model. . Data fitting is modeled and solved using Constrained Optimization via Pyomo and IPOPT. . Important: I am neither a medical doctor nor an epidemiologist. This post is only about a didactic example of fitting open-data via Mathematical Optimization. . Runnig this notebook on Colab . Run the following snippet if you arre running this notebook in Colab. . #collapse-hide import shutil import sys import os.path if not shutil.which(&quot;pyomo&quot;): !pip install -q pyomo assert(shutil.which(&quot;pyomo&quot;)) if not (shutil.which(&quot;ipopt&quot;) or os.path.isfile(&quot;ipopt&quot;)): if &quot;google.colab&quot; in sys.modules: !apt-get install -y -qq glpk-utils else: try: !conda install -c conda-forge ipopt except: pass . . The SIR model: The Elegance of Simplicity . The SIR model ... . Data Fitting via Constrained Optimization . Is the Curve Flattening? . Charts made with Altair remain interactive. Example charts taken from this repo, specifically this notebook. . License . This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. .",
+            "url": "https://stegua.github.io/famo2spaghi/jupyter/2020/03/30/is-the-covid-curve-flattening-in-italy.html",
+            "relUrl": "/jupyter/2020/03/30/is-the-covid-curve-flattening-in-italy.html",
+            "date": " • Mar 30, 2020"
+        }
+        
+    
+  
 
   
   
 
   
-      "page1": {
+      ,"page1": {
           "title": "About Me",
           "content": "About me . The views expressed on this blog are mine and do not necessarily reflect the views of my employers. . You can find my personal offical web pages at the following links: . My Academic Home Page . | My Publications . | . Credits . This blog started in 2012 after several discussions with my friend and coauthor Stefano Coniglio, who always proofreads my posts. Though I have not convinced him to write any guest post yet, he is a contributor of this blog: thanks Stefano! . Another friend and coauthor that supports this blog is Marco Chiarandini. I do not know when he finds the time to proofread my posts, but he does, with the same seriousness as if he were reviewing a paper: thanks Marco! . Sponsorships . I do not accept any web marketing advertisement on this web site. . However, you can offer me coffee and brioche or pizza capricciosa through paypal. . FastPages . This site is built with fastpages. .",
           "url": "https://stegua.github.io/famo2spaghi/about/",
