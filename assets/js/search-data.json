@@ -29,7 +29,7 @@
   
       ,"page1": {
           "title": "About Me",
-          "content": "This is where you put the contents of your About page. Like all your pages, it’s in Markdown format. . This website is powered by fastpages 1. . a blogging platform that natively supports Jupyter notebooks in addition to other formats. &#8617; . |",
+          "content": "About me . The views expressed on this blog are mine and do not necessarily reflect the views of my employers. . You can find my personal offical web pages at the following links: . My Academic Home Page . | My Publications . | . Credits . This blog started in 2010 after several discussions with my friend and coauthor Stefano Coniglio,who always proofreads my posts. Though I have not convinced him to write any guest post yet, he is a contributor of this blog: thanks Stefano! . Another friend and coauthor that supports this blog is Marco Chiarandini. I do not know when he finds the time to proofread my posts, but he does, with the same seriousness as if he were reviewing a paper: thanks Marco! . Sponsorships . I do not accept any web marketing advertisement on this web site. . However, you can offer me coffee and brioche or pizza capricciosa through paypal. . FastPages . This site is built with fastpages. .",
           "url": "https://stegua.github.io/famo2spaghi/about/",
           "relUrl": "/about/",
           "date": ""
